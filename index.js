@@ -43,13 +43,13 @@ gsap.from(".img-profile img", {
     ease:"back-out(1.7)"
 });
 
-gsap.to(".img-profile img", {
-    y: 15,
-    duration: 2,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
-});
+// gsap.to(".img-profile img", {
+//     y: 15,
+//     duration: 2,
+//     repeat: -1,
+//     yoyo: true,
+//     ease: "sine.inOut"
+// });
 
 
 gsap.from(".about-img img", {
