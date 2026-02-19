@@ -51,26 +51,34 @@ gsap.from(".img-profile img", {
 //     ease: "sine.inOut"
 // });
 
-
 gsap.from(".about-img img", {
-    ScrollTrigger:{
-        trigger:".about",
+    scrollTrigger: {
+        trigger: ".about",
         start: "top 80%"
     },
-    x:-100,
-    opacity:0,
-    duration:1
+    x: -100,
+    opacity: 0,
+    duration: 1
 });
 
 gsap.from(".about-content", {
-    ScrollTrigger:{
-        trigger:".about",
-        start:"top 80%"
+    scrollTrigger: {
+        trigger: ".about",
+        start: "top 80%"
     },
-    x:100,
-    opacity:0,
-    duration:1
+    x: 100,
+    opacity: 0,
+    duration: 1
 });
+
+document.querySelectorAll(".timeline-item").forEach(el => {
+    observer.observe(el);
+});
+
+document.querySelectorAll(".exp-card").forEach(el => {
+    observer.observe(el);
+});
+
 
 // gsap.from(".card", {
 //     scrollTrigger: {
@@ -83,7 +91,6 @@ gsap.from(".about-content", {
 //     stagger: 0.2
 // });
 
-
 gsap.from(".contact-form", {
     ScrollTrigger:{
         trigger: ".contact-form",
@@ -93,6 +100,15 @@ gsap.from(".contact-form", {
     opacity:0,
     duration:1
 });
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, { threshold: 0.2 });
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".navbar a");
@@ -116,6 +132,7 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
