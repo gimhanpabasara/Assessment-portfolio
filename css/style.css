@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;  
-    z-index: 100;
+    z-index: 99;
 }
 .logo{
     font-size: 25px;
@@ -191,8 +191,125 @@ span{
     color: orangered;
 }
 
+.education-title,
+.experience-titile {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.education-title::after,
+.experience-titile::after{
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: orangered;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.education{
+    background: #111;
+    color: white;
+    padding: 100px 12%;
+}
+
+.timeline{
+    position: relative;
+    margin: auto;
+    max-width: 900px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: orangered;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item{
+    padding: 20px 40px;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.timeline-item:nth-child(odd){
+    left: 0;
+}
+
+.timeline-item:nth-child(even){
+    left: 50%;
+}
+
+.timeline-content {
+    background: #1c1c1c;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 020px rgba(255, 255, 255, 0.2);
+}
+
+.timeline-content h3{
+    margin-bottom: 10px;
+    color: orangered;
+}
+
+.timeline-content span{
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.experience{
+    background: #fbfbfb;
+    padding: 100px 12%;
+}
+
+.experience-container{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.exp-card{
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    transition: 0.4s ease;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.exp-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(255,69,0,0.3);
+}
+
+.exp-card h3 {
+    color: orangered;
+    margin-bottom: 10px;
+}
+
+.exp-card span {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+
 #contact{
-    background-color: #F5F5F7;
+    /* background-color: #F5F5F7; */
 }
 
 .contact-form h2{
