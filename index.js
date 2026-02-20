@@ -71,15 +71,6 @@ gsap.from(".about-content", {
     duration: 1
 });
 
-document.querySelectorAll(".timeline-item").forEach(el => {
-    observer.observe(el);
-});
-
-document.querySelectorAll(".exp-card").forEach(el => {
-    observer.observe(el);
-});
-
-
 // gsap.from(".card", {
 //     scrollTrigger: {
 //         trigger: "#services",
@@ -109,6 +100,14 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.2 });
+
+document.querySelectorAll(".timeline-item").forEach(el => {
+    observer.observe(el);
+});
+
+document.querySelectorAll(".exp-card").forEach(el => {
+    observer.observe(el);
+});
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".navbar a");
