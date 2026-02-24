@@ -44,6 +44,10 @@ span{
     transition: 0.3s ease;
 }
 
+.navbar .nav-contact{
+    display: none;
+}
+
 .navbar a:hover, 
 .navbar a.active{
     color: orangered;
@@ -66,6 +70,51 @@ span{
     background-color: orangered;
     box-shadow: 0 0 25px orange;
     color: white;
+}
+
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.menu-toggle span{
+    width: 28px;
+    height: 3px;
+    background: white;
+    transition: 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 97;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .home{
@@ -308,9 +357,175 @@ span{
 }
 
 
-#contact{
-    /* background-color: #F5F5F7; */
+.skills {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 100px 12%;
 }
+
+.skills-title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skills-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: orangered;
+    display: block;
+    margin: 15px auto 0;
+}
+
+.skills-description {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 60px;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.skill-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+    border: 1px solid rgba(255, 69, 0, 0.1);
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.skill-box:nth-child(1) { animation-delay: 0.1s; }
+.skill-box:nth-child(2) { animation-delay: 0.2s; }
+.skill-box:nth-child(3) { animation-delay: 0.3s; }
+.skill-box:nth-child(4) { animation-delay: 0.4s; }
+.skill-box:nth-child(5) { animation-delay: 0.5s; }
+.skill-box:nth-child(6) { animation-delay: 0.6s; }
+.skill-box:nth-child(7) { animation-delay: 0.7s; }
+.skill-box:nth-child(8) { animation-delay: 0.8s; }
+.skill-box:nth-child(9) { animation-delay: 0.9s; }
+.skill-box:nth-child(10) { animation-delay: 1s; }
+
+.skill-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 69, 0, 0.3);
+    border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.skill-percentage {
+    font-size: 16px;
+    font-weight: 600;
+    color: orangered;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4500 0%, #ff6347 100%);
+    border-radius: 25px;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skill-progress.animate {
+    animation: fillBar 1.5s ease-in-out;
+}
+
+@keyframes fillBar {
+    0% {
+        width: 0;
+    }
+}
+
 
 .contact-form h2{
     text-align: center;
@@ -501,6 +716,8 @@ span{
     color: #f0f0f0;
 }
 
+/* for cards */
+
 @media screen and (min-width: 768px) {
     section{
         padding: 0 2em;
@@ -511,6 +728,7 @@ span{
         max-width: 50%;
     }
 }
+
 @media screen and (min-width: 992px) {
     section {
         padding: 1em 3em;
@@ -518,5 +736,445 @@ span{
     .column{
         flex: 0 0 33.33%;
         max-width: 33.33%;
+    }
+}
+
+/* Desktop - Large Screens (1440px and above) */
+@media(min-width: 1440px) {
+    .header {
+        padding: 35px 15%;
+    }
+
+    .home {
+        padding: 30px 15% 0;
+        gap: 8em;
+    }
+
+    .about {
+        padding: 12% 12%;
+        gap: 12em;
+    }
+}
+
+/* Laptop - Standard Screens (1024px - 1439px) */
+@media(min-width: 1024px) and (max-width: 1439px) {
+    .header {
+        padding: 30px 8%;
+    }
+
+    .home {
+        gap: 5em;
+        padding: 30px 8% 0;
+    }
+
+    .img-profile img {
+        width: 450px;
+    }
+
+    .home-content h1 {
+        font-size: 55px;
+    }
+
+    .home-content h3 {
+        font-size: 36px;
+    }
+
+    .about {
+        gap: 6em;
+        padding: 10% 6%;
+    }
+
+    .about-img img {
+        width: 450px;
+    }
+
+    .skills {
+        padding: 80px 8%;
+    }
+
+    .skills-container {
+        gap: 30px;
+    }
+}
+
+/* Tablet - Medium Screens (768px - 1023px) */
+@media(max-width: 1023px) and (min-width: 768px) {
+    .header {
+        padding: 25px 6%;
+    }
+
+    .contact {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .home {
+        flex-direction: column;
+        text-align: center;
+        gap: 3em;
+        padding: 30px 6% 0;
+        padding-top: 120px;
+    }
+
+    .home-content h1 {
+        font-size: 48px;
+    }
+
+    .home-content h3 {
+        font-size: 32px;
+    }
+
+    .home-content p {
+        font-size: 16px;
+    }
+
+    .img-profile img {
+        width: 380px;
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+        gap: 4em;
+        padding: 80px 6%;
+    }
+
+    .about-img img {
+        width: 380px;
+    }
+
+    .about-content h2 {
+        font-size: 36px;
+    }
+
+    .about-content h3 {
+        font-size: 48px;
+    }
+
+    .about-content p {
+        font-size: 18px;
+        margin: 1.5em;
+    }
+
+    .education, .experience {
+        padding: 80px 6%;
+    }
+
+    .skills {
+        padding: 80px 6%;
+    }
+
+    .skills-title {
+        font-size: 36px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .experience-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .exp-card {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+/* Mobile - Small Screens (below 768px) */
+@media(max-width: 767px) {
+    .header {
+        padding: 20px 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    /* Hide desktop contact button on mobile */
+    .contact {
+        display: none;
+    }
+
+    /* Show mobile menu toggle */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Mobile navigation menu */
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding-top: 100px;
+        gap: 0;
+        transition: 0.4s ease;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 98;
+    }
+
+    .navbar a {
+        display: block;
+        margin: 0;
+        padding: 20px 30px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 3px solid transparent;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+        background: rgba(255, 69, 0, 0.1);
+        border-left: 3px solid orangered;
+    }
+
+    /* Show Contact link in mobile menu */
+    .navbar .nav-contact {
+        display: block;
+        background: rgba(255, 69, 0, 0.2);
+    }
+
+    .navbar.active {
+        right: 0;
+    }
+
+    /* Home section mobile */
+    .home {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 100px;
+        gap: 2em;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .home-content h1 {
+        font-size: 32px;
+    }
+
+    .home-content h3 {
+        font-size: 24px;
+    }
+
+    .home-content p {
+        font-size: 16px;
+        margin: 20px 0;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-1 {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .img-profile img {
+        width: 240px;
+    }
+
+    /* About section mobile */
+    .about {
+        flex-direction: column;
+        gap: 2em;
+        padding: 80px 5%;
+    }
+
+    .about-img img {
+        width: 240px;
+    }
+
+    .about-content h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .about-content h3 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .about-content p {
+        font-size: 16px;
+        margin: 1.5em 0;
+    }
+
+    /* Services section mobile */
+    .section-heading {
+        font-size: 24px;
+        padding: 25px 0 15px 0;
+    }
+
+    .description-service {
+        font-size: 16px;
+        padding: 0 10px 40px 10px;
+    }
+
+    /* Education section mobile */
+    .education {
+        padding: 60px 5%;
+    }
+
+    .education-title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    .timeline::after {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 10px;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-content h3 {
+        font-size: 18px;
+    }
+
+    /* Skills section mobile */
+    .skills {
+        padding: 60px 5%;
+    }
+
+    .skills-title {
+        font-size: 28px;
+    }
+
+    .skills-description {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .skill-box {
+        padding: 20px;
+    }
+
+    .skill-name {
+        font-size: 16px;
+    }
+
+    .skill-percentage {
+        font-size: 14px;
+    }
+
+    /* Experience section mobile */
+    .experience {
+        padding: 60px 5%;
+    }
+
+    .experience-titile {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    .experience-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .exp-card {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .exp-card h3 {
+        font-size: 20px;
+    }
+
+    /* Contact section mobile */
+    .contact-form h2 {
+        font-size: 28px;
+        margin-top: 2em;
+    }
+
+    .contact-form form {
+        padding: 0 5%;
+    }
+
+    .contact-form form .input-box input,
+    .contact-form form textarea {
+        padding: 1.2em;
+        font-size: 16px;
+    }
+
+    /* Footer mobile */
+    .footer {
+        padding: 30px 0;
+    }
+
+    .footer ul li {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+}
+
+/* Extra small devices (below 480px) */
+@media(max-width: 480px) {
+    .header {
+        padding: 18px 4%;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .navbar {
+        width: 250px;
+    }
+
+    .home-content h1 {
+        font-size: 28px;
+    }
+
+    .home-content h3 {
+        font-size: 20px;
+    }
+
+    .img-profile img {
+        width: 200px;
+    }
+
+    .about-img img {
+        width: 200px;
+    }
+
+    .about-content h2 {
+        font-size: 28px;
+    }
+
+    .about-content h3 {
+        font-size: 24px;
+    }
+
+    .exp-card {
+        padding: 20px;
     }
 }
