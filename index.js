@@ -1,5 +1,71 @@
 gsap.registerPlugin(ScrollTrigger);
 
+
+const menuToggle = document.getElementById("menu-toggle");
+const navbar = document.getElementById("navbar");
+const overlay = document.getElementById("overlay");
+
+//  close
+function closeMenu() {
+    menuToggle.classList.remove("active");
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+// Toggle mobile menu
+menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navbar.classList.toggle("active");
+    overlay.classList.toggle("active");
+});
+
+
+overlay.addEventListener("click", closeMenu);
+
+//navigation link 
+document.querySelectorAll('.navbar a').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            const headerHeight = document.querySelector(".header").offsetHeight;
+            const sectionPosition = targetSection.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: "smooth"
+            });
+
+            closeMenu();
+        }
+    });
+})
+
+// Contact Me button
+document.querySelectorAll('a[href^="#"]:not(.navbar a)').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            const headerHeight = document.querySelector(".header").offsetHeight;
+            const sectionPosition = targetSection.offsetTop - headerHeight;
+            
+            // Smooth scroll to section
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: "smooth"
+            });
+        }
+    });
+})
+
+
 gsap.from(".header", {
     y: -80,
     opacity:0,
@@ -92,6 +158,47 @@ gsap.from(".contact-form", {
     duration:1
 });
 
+// Skills
+const skillsSection = document.querySelector('.skills');
+const skillProgressBars = document.querySelectorAll('.skill-progress');
+let skillsAnimated = false;
+
+
+function animateSkills() {
+    if (skillsAnimated) return;
+    
+    skillProgressBars.forEach((bar, index) => {
+        const targetWidth = bar.getAttribute('data-progress');
+        
+        setTimeout(() => {
+            bar.style.width = targetWidth + '%';
+            bar.classList.add('animate');
+        }, index * 100);
+    });
+    
+    skillsAnimated = true;
+}
+
+
+function checkSkillsInView() {
+    if (!skillsSection) return;
+    
+    const rect = skillsSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+    // 70% visible
+    if (rect.top <= windowHeight * 0.7 && rect.bottom >= 0) {
+        animateSkills();
+        window.removeEventListener('scroll', checkSkillsInView);
+    }
+}
+
+
+if (skillsSection) {
+    window.addEventListener('scroll', checkSkillsInView);
+    checkSkillsInView();
+}
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
@@ -129,16 +236,5 @@ window.addEventListener("scroll", () => {
         if(link.getAttribute("href") === `#${current}`) {
             link.classList.add("active");
         }
-    });
-});
-
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth"
-        });
     });
 });
